@@ -3,11 +3,12 @@
 
 <head>
     <!-- A-Frame -->
-    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-    <!-- we use three.js to handle raycasting -->
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex.js"></script>
-    <!-- AR.js A-Frame components -->
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <!-- location based script -->
+    <script type='text/javascript'
+        src='https://raw.githack.com/AR-js-org/AR.js/3.4.5/three.js/build/ar-threex-location-only.js'></script>
+    <script type='text/javascript'
+        src='https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js'></script>
     <script>
         AFRAME.registerComponent('clicker', {
             init: function () {
@@ -21,29 +22,15 @@
 </head>
 
 <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs vr-mode-ui="enabled: false" raycaster cursor="rayOrigin: mouse"
-        renderer="antialias: true; alpha: true">
-        <!-- Marker -->
-        <a-marker preset="hiro">
-            <!-- <a-box position="0 0.5 0" color="blue"></a-box> -->
+    <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false'
+        renderer='antialias: true; alpha: true'>
+        <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
 
-            <!-- step 3
-            <a-sphere position="0 0.5 0" radius="0.5" color="red"></a-sphere> -->
-
-            <!-- step 4 -->
-            <!-- <a-entity position="0 0 0" scale="0.05 0.05 0.05" rotation="0 45 0" gltf-model="../scene/scene.gltf"> -->
-
-            <!-- step 5 -->
-            <!-- <a-box position="0 0.5 0" color="#4CC3D9" rotation="0 45 0"
-                animation="property: rotation; to: 0 360 0; loop: true; dur: 5000"></a-box>
-            </a-entity> -->
-
-            <!-- step 6 -->
-            <a-entity position="0 0 0" scale="5 5 5" rotation="0 180 0" gltf-model="retrocomputer_gltf/scene.gltf"
-                clicker></a-entity>
-        </a-marker>
-        <a-entity camera></a-entity>
+        <!-- Niagra Falls -->
+        <a-entity material='color: red' geometry='primitive: box'
+            gps-new-entity-place="latitude: 43.092461; longitude: -79.047150" scale="5 5 5"></a-entity>
     </a-scene>
+    <a-entity camera></a-entity>
 </body>
 
 </html>

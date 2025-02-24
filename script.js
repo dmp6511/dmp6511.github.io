@@ -7,14 +7,16 @@ const places = [
     { name: "My Location", latitude: 43.08319, longitude: -77.600730 }
 ];
 
+
 const loadPlaces = () => {
     const scene = document.querySelector("a-scene");
 
     places.forEach(place => {
-        const entity = document.createElement("a-entity");
+        // change to sphere
+        const entity = document.createElement("a-sphere");
 
         entity.setAttribute("gps-entity-place", `latitude: ${place.latitude}; longitude: ${place.longitude}`);
-        entity.setAttribute("geometry", "primitive: sphere; radius: 1");
+        //entity.setAttribute("geometry", "primitive: sphere; radius: 1");
         entity.setAttribute("material", "color: blue");
 
         const text = document.createElement("a-text");

@@ -14,20 +14,21 @@ const loadPlaces = () => {
     places.forEach(place => {
         // change to sphere
         const shape = document.createElement("a-sphere");
-        shape.setAttribute("color: blue");
+        shape.setAttribute("color", "blue");
 
-        shape.setAttribute("gps-entity-place", `latitude: ${place.latitude}; longitude: ${place.longitude}`);
-        //entity.setAttribute("geometry", "primitive: sphere; radius: 1");
+        const entity = document.createElement("a-entity");
+        entity.setAttribute("gps-entity-place", `latitude: ${place.latitude}; longitude: ${place.longitude}`);
+
 
         const text = document.createElement("a-text");
         text.setAttribute("value", place.name);
         text.setAttribute("align", "center");
         text.setAttribute("position", "0 2 0");
-        shape.appendChild(text);
+        entity.appendChild(text);
 
-        shape.addEventListener("click", () => alert(`You clicked on: ${place.name}`));
+        entity.addEventListener("click", () => alert(`You clicked on: ${place.name}`));
 
-        scene.appendChild(shape);
+        scene.appendChild(entity);
     });
 };
 

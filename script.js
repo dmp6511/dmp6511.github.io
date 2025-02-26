@@ -1,9 +1,9 @@
 // For testing puroposes, you may need to change these places to something closer to you
 const places = [
-    { name: "Rochester Abandoned Subway", latitude: 43.154722, longitude: -77.609722 },
-    { name: "Washington Square Park", latitude: 43.1534, longitude: -77.6053 },
-    { name: "Rochester Contemporary Art Center", latitude: 43.156619, longitude: -77.600730 },
-    { name: "myLocation", latitude: 43.08323, longitude: -77.67629 },
+    // { name: "Rochester Abandoned Subway", latitude: 43.154722, longitude: -77.609722 },
+    // { name: "Washington Square Park", latitude: 43.1534, longitude: -77.6053 },
+    // { name: "Rochester Contemporary Art Center", latitude: 43.156619, longitude: -77.600730 },
+    { name: "My Location", latitude: 43.08323, longitude: -77.67629 },
 ];
 
 
@@ -13,12 +13,7 @@ const loadPlaces = () => {
     places.forEach(place => {
         const entity = document.createElement("a-entity");
 
-        // add shape
-        const shape = document.createElement("a-sphere");
-        shape.setAttribute("material", "color: blue");
-
         entity.setAttribute("gps-entity-place", `latitude: ${place.latitude}; longitude: ${place.longitude}`);
-        entity.setAttribute("geometry", { primitive: sphere, radius: 1 });
         entity.setAttribute("material", "color: blue");
 
         const text = document.createElement("a-text");

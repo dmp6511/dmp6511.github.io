@@ -15,6 +15,7 @@ const loadPlaces = () => {
 
         // add shape
         const shape = document.createElement("a-sphere");
+        shape.setAttribute("material", "color: blue");
 
         entity.setAttribute("gps-entity-place", `latitude: ${place.latitude}; longitude: ${place.longitude}`);
         entity.setAttribute("geometry", { primitive: sphere, radius: 1 });

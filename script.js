@@ -13,8 +13,11 @@ const loadPlaces = () => {
     places.forEach(place => {
         const entity = document.createElement("a-entity");
 
+        // add shape
+        const shape = document.createElement("a-sphere");
+
         entity.setAttribute("gps-entity-place", `latitude: ${place.latitude}; longitude: ${place.longitude}`);
-        entity.setAttribute("geometry", "primitive: sphere; radius: 1");
+        entity.setAttribute("geometry", { primitive: sphere, radius: 1 });
         entity.setAttribute("material", "color: blue");
 
         const text = document.createElement("a-text");

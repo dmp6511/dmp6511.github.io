@@ -10,7 +10,7 @@
     <a-scene embedded arjs>
       <!-- Marker element with custom component -->
       <a-marker preset="hiro" custom-listener>
-        <a-box position="0 0 0" color="#4CC3D9"></a-box>
+        <a-box position="0 1 0" color="#4CC3D9"></a-box>
       </a-marker>
       
       <!-- Example GPS entity using gps-entity-place -->
@@ -32,6 +32,7 @@
           // Listen for the markerFound event (from AR.js)
           el.addEventListener('markerFound', function () {
             concole.log('Marker found on element', el);
+            alert('Marker found on element');
             // For demonstration: Toggle the element's color
             var currentColor = el.getAttribute('color');
             el.setAttribute('color', currentColor === '#4CC3D9' ? '#EF2D5E' : '#4CC3D9');

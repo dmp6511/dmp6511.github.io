@@ -13,8 +13,8 @@
     <a-scene embedded arjs raycaster vr-mode-ui="enabled: false" renderer="logarithmicDepthBuffer: true;">
         <a-assets>
             <!-- Audio element for playing sound -->
-            <audio id="myAudio" src="https://coemergencelab.com/ar/Eno_The_Secret_Place.mp3" type="audio/mpeg"
-                preload="auto" loop="true" crossorigin="anonymous"></audio>
+            <audio id="myAudio" src="./assets/'Midsummer Nights' prod by Adrian.mp3" type="audio/mpeg" preload="auto"
+                loop="true" crossorigin="anonymous"></audio>
             <!-- Alternatively, you can add a video element if you prefer -->
             <!-- <video id="myVideo" src="https://coemergencelab.com/ar/bigbuckbunny.mp4" type="video/mp4" preload="auto" loop="true" crossorigin="anonymous" style="display:none;"></video> -->
         </a-assets>
@@ -51,17 +51,17 @@
         });
 
         /* For playing video instead, you could do:
-              document.querySelector('#mediaSphere').addEventListener('click', function () {
-                let videoElement = document.querySelector('#myVideo');
-                if (videoElement.paused) {
-                  videoElement.style.display = "block"; // Show video element
-                  videoElement.play();
-                } else {
-                  videoElement.pause();
-                  videoElement.style.display = "none"; // Hide video element after pausing
-                }
-              });
-              */
+        document.querySelector('#mediaSphere').addEventListener('click', function () {
+          let videoElement = document.querySelector('#myVideo');
+          if (videoElement.paused) {
+            videoElement.style.display = "block"; // Show video element
+            videoElement.play();
+          } else {
+            videoElement.pause();
+            videoElement.style.display = "none"; // Hide video element after pausing
+          }
+        });
+        */
     </script>
 </body>
 

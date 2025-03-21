@@ -3,63 +3,65 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Custom Component with MarkerFound and GPS Update</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Interactive AR Exercise</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src='https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js'></script>
 </head>
 
 <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs>
-        <!-- Marker element with custom component -->
-        <a-marker preset="hiro" custom-listener>
-            <a-box position="0 1 0" color="#4CC3D9"></a-box>
+    <a-scene embedded arjs raycaster vr-mode-ui="enabled: false" renderer="logarithmicDepthBuffer: true;">
+        <a-assets>
+            <!-- Audio element for playing sound -->
+            <audio id="myAudio" src="https://coemergencelab.com/ar/Eno_The_Secret_Place.mp3" type="audio/mpeg"
+                preload="auto" loop="true" crossorigin="anonymous"></audio>
+            <!-- Alternatively, you can add a video element if you prefer -->
+            <!-- <video id="myVideo" src="https://coemergencelab.com/ar/bigbuckbunny.mp4" type="video/mp4" preload="auto" loop="true" crossorigin="anonymous" style="display:none;"></video> -->
+        </a-assets>
+        <!-- Marker that triggers AR content -->
+        <a-marker preset="hiro">
+            <!-- 3D object for playing media (sound/video) -->
+            <a-entity id="mediaSphere" position="0 -1 0" geometry="primitive: sphere; radius: 0.5"
+                material="color: blue" class="clickable" sound="src: #myAudio; on: click"></a-entity>
+
+            <!-- 
+        optional video
+        <a-entity id="mediaSphere" position="0 -1 0" geometry="primitive: sphere; radius: 0.5" material="color: red" class="clickable">
+          <a-video class="clickable" src="#myVideo" width="16" height="9" position="0 0 -2"></a-video>
+        </a-entity>
+        -->
+
         </a-marker>
-
-        <!-- Example GPS entity using gps-entity-place -->
-        <!-- <a-entity 
-        gps-entity-place="latitude: 40.748817; longitude: -73.985428" 
-        custom-listener>
-        <a-sphere radius="1" color="blue"></a-sphere>
-      </a-entity> -->
-
-        <a-entity camera></a-entity>
+        <!-- camera with raycaster -->
+        <a-entity camera>
+            <a-entity cursor="fuse: false; rayOrigin: mouse" raycaster="objects: .clickable"></a-entity>
+        </a-entity>
     </a-scene>
 
-    <div class="buttons">
-        <button class="say-hi-button">Say Hi</button>
-    </div>
 
     <script>
-        // Register a custom component to handle events
-        AFRAME.registerComponent('custom-listener', {
-            init: function () {
-                var el = this.el;
-
-                // Listen for the markerFound event (from AR.js)
-                el.addEventListener('markerFound', function () {
-                    concole.log('Marker found on element', el);
-                    alert('Marker found on element');
-                    // For demonstration: Toggle the element's color
-                    var currentColor = el.getAttribute('color');
-                    el.setAttribute('color', currentColor === '#4CC3D9' ? '#EF2D5E' : '#4CC3D9');
-                });
-
-                // Listen for the gps-entity-place update event
-                // (This event is fired when the entity's position is updated based on GPS data)
-                el.addEventListener('gps-entity-place-update-position', function (evt) {
-                    alert('GPS entity updated position: ' + evt.detail);
-                    // You could update the UI or trigger additional actions based on the new position
-                });
+        // Play audio when the sphere is clicked
+        document.querySelector('#mediaSphere').addEventListener('click', function () {
+            let audioElement = document.querySelector('#myAudio');
+            if (audioElement.paused) {
+                audioElement.play();
+            } else {
+                audioElement.pause();
             }
         });
 
-        // Add a click event listener to the button
-        document.querySelector('.say-hi-button').addEventListener('click', function () {
-            alert('Hi there!');
-        });
-
-        // help
-        
+        /* For playing video instead, you could do:
+              document.querySelector('#mediaSphere').addEventListener('click', function () {
+                let videoElement = document.querySelector('#myVideo');
+                if (videoElement.paused) {
+                  videoElement.style.display = "block"; // Show video element
+                  videoElement.play();
+                } else {
+                  videoElement.pause();
+                  videoElement.style.display = "none"; // Hide video element after pausing
+                }
+              });
+              */
     </script>
 </body>
 

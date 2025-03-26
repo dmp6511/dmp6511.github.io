@@ -19,7 +19,7 @@
             <!-- <video id="myVideo" src="https://coemergencelab.com/ar/bigbuckbunny.mp4" type="video/mp4" preload="auto" loop="true" crossorigin="anonymous" style="display:none;"></video> -->
         </a-assets>
         <!-- Marker that triggers AR content -->
-        <a-marker preset="hiro">
+         <a-marker preset="custom" type="pattern" url="./pattern-rcal_custom_marker.patt">
             <!-- 3D object for playing media (sound/video) -->
             <a-entity id="mediaSphere" position="0 -1 0" geometry="primitive: sphere; radius: 0.5"
                 material="color: blue" class="clickable" sound="src: #myAudio; on: click"></a-entity>
